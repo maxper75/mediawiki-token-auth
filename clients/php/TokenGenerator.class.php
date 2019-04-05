@@ -22,11 +22,14 @@ class TokenGenerator {
   private function generateToken(){
     return $this->psk.$this->separator.time();
   }
-  public setPsk($psk){
+  public function setPsk($psk){
     $this->psk = psk;
   }
-  public setSeparator($separator){
+  public function setSeparator($separator){
     $this->separator = $separator;
+  }
+  public function setPublicKey($publicKey){
+    $this->publicKey = $publicKey;
   }
 }
 
