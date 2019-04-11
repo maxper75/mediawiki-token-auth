@@ -77,7 +77,6 @@ class TokenAuth {
 		foreach ($this->authrecords as $authrecord) {
 			if ( !isset( $authrecord['user'] ) ) {
 				// no 'user' is specified for record, so don't do anything
-				$record = print_r( $authrecord, true );
 				wfDebug( "TokenAuth: Record $record does not contain 'user' field!\n" );
 			} else {
 				$username = $authrecord['user'];
@@ -110,10 +109,9 @@ class TokenAuth {
 		$separatore="%_%";
 		$decryptrsa = new RSA();
 		$decryptrsa->setPrivateKeyFormat(RSA::PRIVATE_FORMAT_XML);
-		$decryptrsa->loadKey(file_get_contents(__DIR__."/privkey.xml"));
+		$decryptrsa->loadKey($authrecord['privkey']);
 		$decryptedToken=$decryptrsa->decrypt(base64_decode($authToken));
 		$tokenParts = explode($separatore,$decryptedToken);
-		print_r($tokenParts);
 		return (($tokenParts[0]===$psk)&&($this->validToken($tokenParts[1],$lifetime)));
 	}
 	private function validToken($tokenTime,$maxRangeSecs){
