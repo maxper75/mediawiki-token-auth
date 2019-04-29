@@ -1,4 +1,6 @@
 This project was born to solve simply the access to a guest access protected wiki.
+Big thanks go to the authors of the NetworkAuth module which I used as a boilerplate.
+Without that plugin I'd never be able to understand MediaWiki internals so easily.
 The requirement was to have ALL the content protected by an access, with 3 different
 roles:
 1 ADMIN (can do anything on the wiki)
@@ -28,7 +30,7 @@ Where PSK is a common word defined within the MW server (it can be used, for
   I released with the code even a PHP client that calculates the token very
   easily with the TokenGenerator.class.php. The example is Where
 
-  ``php
+```php
 
 <?php
 require "TokenGenerator.class.php";
